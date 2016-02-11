@@ -33,9 +33,13 @@ so **be careful**.
 4. Open up that file in your editor and do a command-f search for `>>>>` And you find something like the following:
 
 `<<<<<<< HEAD`
+
     `//Some code here`
+    
 `=======`
+
    `//Some slightly different code here`
+   
 `>>>>>>> master`
   
 5. Essentially what this is saying, is that you now have two options. You have the "HEAD" which is the **current version of the file on your computer** that you have modified. And then you have what's on the **master** branch. The master branch is what is currently on Github. 
