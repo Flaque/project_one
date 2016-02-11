@@ -2,7 +2,7 @@
 The first project of the semester for Object Oriented.
 
 # How to setup
-1. Make sure Evan added you as a collab.
+1. Make sure the creator has added you as a collab.
 2. Run `git clone https://github.com/Flaque/project_one.git`. This will create a folder for you wherever you ran the command,
 so **be careful**. 
 3. Open Eclipse and when it asks you where you want to open your workspace, pick the folder that git created for you. 
