@@ -27,7 +27,26 @@ so **be careful**.
   - If all goes well, then you can run `git push` and your changes should be on github. If you're scared and want to make sure, you can go check github online to see!
   
 # How to fix merge conflicts
-1. Sometimes, when you pull, you'll have a problem. //TODO 
+1. Sometimes, when you pull, you'll get a message that you have lots of merge conflicts! OH NO! WHAT NOW?! 
+2. Don't panic, it's only slightly difficult and terrifying to deal with this.
+3. Your message should give you a path or multiple pathes of which file has the conflicts. 
+4. Open up that file in your editor and do a command-f search for `>>>>` And you find something like the following:
+
+`<<<<<<< HEAD`
+    `//Some code here`
+`=======`
+   `//Some slightly different code here`
+`>>>>>>> master`
   
+5. Essentially what this is saying, is that you now have two options. You have the "HEAD" which is the **current version of the file on your computer** that you have modified. And then you have what's on the **master** branch. The master branch is what is currently on Github. 
+6. So, if I wanted the stuff in "HEAD" and not the stuff in master, I would edit the file so that it is now:
+
+
+ `//Some code here`
+ 
+ 
+ 7. Literally the only thing I have done is remove all of the git stuff. 
+ 8. You can then run `git commit -m "merged stuff"` and push. Then you're fine.
+ 
   
   
