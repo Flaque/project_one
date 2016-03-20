@@ -59,7 +59,9 @@ so **be careful**.
 
  ---
 
- # Prototype plan: Overview
+ 
+
+#Prototype plan: Overview
 
 Hour logs aren't going to work easily for us since we're building a game. We don't completely know how long things are going to take or even what tasks we will need to do. A better strategy to divide up work and plan things is to hit a series of prototypes and stages. Basically we're going to do a mini agile methodology because waterfall doesn't work easily for us here.
 
