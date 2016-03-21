@@ -3,7 +3,7 @@ package entity;
 import java.awt.Dimension;
 import java.awt.Point;
 
-public class Player extends Entity {
+public class Player extends Sprite {
 	
 	private static final int WIDTH  = 16;
 	private static final int HEIGHT = 16;
@@ -16,7 +16,8 @@ public class Player extends Entity {
 	 * @param location
 	 */
 	Player(Point location) {
-		super(location, new Dimension(Player.WIDTH, Player.HEIGHT));
+		super(location, new Dimension(Player.WIDTH, Player.HEIGHT), null);
+		this.setImage("res/p1_jump.png");
 	}
 
 }

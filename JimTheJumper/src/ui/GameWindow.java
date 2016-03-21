@@ -1,5 +1,7 @@
 package ui;
 
+import java.awt.Graphics;
+
 import javax.swing.JFrame;
 
 public class GameWindow extends JFrame {
@@ -16,7 +18,9 @@ public class GameWindow extends JFrame {
 	}
 
 	/**
-	 * Constructor
+	 * The GameWindow is the window that the game runs in. Woo.
+	 * However, you can't easily draw things on a JFrame, so instead
+	 * we draw things on the GamePanel (Just a custom JPanel)
 	 */
 	public GameWindow() {
 		this.initWindow();
@@ -30,5 +34,5 @@ public class GameWindow extends JFrame {
 		this.setSize(GameWindow.WIDTH, GameWindow.HEIGHT);
 		this.setVisible(true); //Common Java, just make this the default.
 	}
-	
+
 }
