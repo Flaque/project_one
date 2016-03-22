@@ -12,6 +12,7 @@ local.properties
 
 # Eclipse Core
 .project
+.metadata
 
 # External tool builders
 .externalToolBuilders/
