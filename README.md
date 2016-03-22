@@ -121,27 +121,3 @@ In which bad things happen
 ----
 
 At this point, we've gotten a game. Woo. Now we can start making some superflous additions like menus and prettiness. At this point, we can start following a lot of our inital plans because we're basically back at developing an initial application. We don't need to pivot because our game sucks and we basically know how to make this stuff.
-
-# Design Alternative Analysis
-
-## Do we use a state machine?
-
-In a game, especially a simple one like ours, we have can have the concept of 'state'. If we were to use a state machine, we would have three states: "Main Menu", "Game", and "Game over". If we keep track of this state, then we'll be able to easily switch between screens and be able to control threading when we change states. Each state machine would have its own view and controller. We would try and share as little information between the controllers as possible. We would implement a StateHandler that would pass information to and from the states. A state would only know it's handler, and nothing about the other states that it wasn't explicitly told by its handler.
-
-However, our state machine is not pure. "Game over" and "Game" overlap by happening essentially at the same time. By our UI design and by the concepts that we had written down before, the Game Over menu hovers above the game where the player died. To handle this in a state machine, the renderer for the Game state would either have to be passed to the Game Over state or the Game Over state would have to pause the rendering thread of one state while implementing its own rendering thread. It gets incredibly messy quite fast.
-
-But, if we don't use a state machine, we would need to put the Game Over inside of the class system of Game. We would have an odd side extension to our "Game" view. The Game's View is all of a sudden not doing simply rendering for the game, but now it's doing rendering for Game Over. This breaks our object oriented concepts by allowing GameView to know too much.
-
-Another option we could try is to delegate out to two specific views controlled by a main view: GamingView and GameOverView. However, this is heavily over engineering for the moment. It forces the perfect to be the enemy of the good.
-
-## How do we handle concurrency in sprite creation?
-
-We've structured our objects so that everything extends from an abstract Entity class, which handles position, size, and collision. Then, some things, namely visible objects, extend Sprite (which in turn extends Entity). A Sprite is just an Entity with an image or an animation. However, a sprite makes things incredibly difficult when we load images. Loading an image in Java is the super ugly series of try and catch blocks that we'd like to abstract away from the end user of Sprite. However, a Sprite needs to be more or less initialized with an image and not Null. If it is null, then we might run into vastly more errors in the future.
-
-One way we could solve this problem is to have an Image Baron. An Image Baron is a class that's called on startup that preloads in images and then allows them accessiblity via an array or public getter methods. With an image baron, creating a sprites fairly simple because no one has to create a sprite initalized with a Null image value. Images are assured before a sprite is ever created. It also catches problems with the project build before anything else. 
-
-However an Image Baron in Java needs to only ever run once and needs to be more/less global. Both of these things are very hard to achieve in Java. If you want something to be Global in Java, you can make it static. However, then that object doesn't have any state and therefore can never run in the first place. You can get around this problem by creating a singular Baron object and then passing it around. However, this does not assure the singular nature of the Image Baron because someone could easily create a second Baron and then its point is ruined. It leaves the door wide open for software rot and bugs caused by misuse of the Baron. 
-
-Another option is to do away with our current method of Sprite construction. Instead of extending a sprite, an object would have a sprite as a property that would be given to it. We could use the factory pattern to create our objects. However, this is extremely overkill for our little project. If we had thousands of various entities and objects, then this would be our only option, no doubt. However we will probably have less than 10. 
-
-In the end, having a Sprite take in a null value for the image and then setting it later might be the best solution here. It leaves us open for a problem, but its problems might be less than that of the Image Baron or the difficulty of the factory method. 
