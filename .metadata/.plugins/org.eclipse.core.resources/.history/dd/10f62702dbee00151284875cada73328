@@ -1,0 +1,16 @@
+package entity;
+
+import java.awt.Point;
+
+public abstract class Entity {
+
+	/**
+	 * Entity is a class that is meant to be extended.
+	 * It contain
+	 * @param point
+	 */
+	Entity(Point point, Dimension Dimension) {
+		
+	}
+	
+}

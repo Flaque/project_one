@@ -1,0 +1,9 @@
+package entity;
+
+public abstract class Entity {
+
+	Entity(int x, int y) {
+		
+	}
+	
+}

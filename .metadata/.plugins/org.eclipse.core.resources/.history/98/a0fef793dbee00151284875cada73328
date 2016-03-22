@@ -1,0 +1,12 @@
+package entity;
+
+import java.awt.Dimension;
+import java.awt.Point;
+
+public class Player extends Entity{
+
+	Player(Point location, Dimension size) {
+		super(location, size);
+	}
+
+}

@@ -1,0 +1,18 @@
+import javax.swing.JFrame;
+
+public class GameWindow extends JFrame {
+	
+	public static void main(String[] args) {
+		
+	}
+
+	GameWindow() {
+		this.initWindow();
+		
+	}
+	
+	private void initWindow() {
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(200, 600);
+	}
+}

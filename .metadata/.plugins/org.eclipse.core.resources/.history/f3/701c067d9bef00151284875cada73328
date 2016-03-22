@@ -1,0 +1,9 @@
+package files;
+
+public class ImageBaron {
+
+	
+	ImageBaron() {
+		
+	}
+}

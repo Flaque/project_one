@@ -1,0 +1,15 @@
+package entity;
+
+import java.awt.Dimension;
+import java.awt.Point;
+
+public class Player extends Entity{
+	
+	private static void final int WIDTH = 16;
+	private static void final int HEIGHT = 16;
+
+	Player(Point location) {
+		super(location, size);
+	}
+
+}

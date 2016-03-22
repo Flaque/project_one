@@ -1,0 +1,13 @@
+package entity;
+
+import java.awt.Dimension;
+import java.awt.Point;
+
+public abstract class Sprite extends Entity{
+
+	Sprite(Point location, Dimension size) {
+		super(location, size);
+		// TODO Auto-generated constructor stub
+	}
+
+}

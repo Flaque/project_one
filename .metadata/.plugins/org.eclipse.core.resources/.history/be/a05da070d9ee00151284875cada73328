@@ -1,0 +1,25 @@
+import javax.swing.JFrame;
+
+public class GameWindow extends JFrame {
+	
+	private static final int WIDTH = 400;
+	
+	/**
+	 * Before we do JUnit Tests, throw your tests in a main
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		GameWindow window = new GameWindow();
+	}
+
+	GameWindow() {
+		this.initWindow();
+		
+	}
+	
+	private void initWindow() {
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(400, 600);
+		this.setVisible(true); //Common Java, just make this the default.
+	}
+}

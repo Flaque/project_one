@@ -1,0 +1,9 @@
+package entity;
+
+public abstract class Entity {
+
+	Entity(Point point) {
+		
+	}
+	
+}
