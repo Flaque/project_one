@@ -17,4 +17,13 @@ public abstract class Entity {
 	Entity(Point location, Dimension size) {
 		this.box = new Rectangle(location.x, location.y, size.width, size.height);
 	}
+	
+	public int getX() {
+		return box.x;
+	}
+	
+	public int getY() {
+		return box.y;
+	}
 }
+
