@@ -1,19 +1,21 @@
 package entity;
 
 import java.awt.Dimension;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JPanel;
 
 public abstract class Sprite extends Entity{
 	
 	// TODO: Cry over concurrency problems with Sprites and images.
 	
 	Image image;
+	
 	
 	/**
 	 * A Sprite is just an entity with an image.
@@ -45,5 +47,33 @@ public abstract class Sprite extends Entity{
 		    this.image = ImageIO.read(new File("res/p1_jump.png"));
 		    return true;
 		} catch (IOException e) { return false; }
+	}
+	
+	/**
+	 * Called to draw
+	 * @param g Graphics2D 
+	 * @param panel JPanel
+	 */
+	public void draw(Graphics2D g, JPanel panel) {
+		try {
+			_draw(g, panel);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Unwrapped draw method, does drawing with exceptions
+	 * @param g
+	 * @param panel
+	 * @throws Exception
+	 */
+	private void _draw(Graphics2D g, JPanel panel) throws Exception {
+		if (this.image == null)
+			throw new Exception("Sprite has no image set. This needs to be set after you initalize the Sprite. (Or extend it)");
+		else 
+			g.drawImage(this.image, this.getX(), this.getY(), panel);
+		
 	}
 }
