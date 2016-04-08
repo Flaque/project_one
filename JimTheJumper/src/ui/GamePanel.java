@@ -1,8 +1,12 @@
 package ui;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
 
 import javax.swing.JPanel;
+
+import entity.Player;
 
 public class GamePanel extends JPanel {
 	
@@ -27,6 +31,11 @@ public class GamePanel extends JPanel {
 	@Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        
+        Player player = new Player(new Point(1, 1));
+        
+        Graphics2D g2d = (Graphics2D) g;
+        player.draw(g2d, this);
     }
 
 }

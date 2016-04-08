@@ -15,7 +15,7 @@ public class Player extends Sprite {
 	 * define them via static final ints.
 	 * @param location
 	 */
-	Player(Point location) {
+	public Player(Point location) {
 		super(location, new Dimension(Player.WIDTH, Player.HEIGHT), null);
 		this.setImage("res/p1_jump.png");
 	}

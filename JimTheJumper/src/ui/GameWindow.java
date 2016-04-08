@@ -33,6 +33,9 @@ public class GameWindow extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(GameWindow.WIDTH, GameWindow.HEIGHT);
 		this.setVisible(true); //Common Java, just make this the default.
+		this.add(new GamePanel());
 	}
+	
+	
 
 }
