@@ -44,7 +44,7 @@ public abstract class Sprite extends Entity{
 	 */
 	protected boolean setImage(String filePath) {
 		try {
-		    this.image = ImageIO.read(new File("res/p1_jump.png"));
+		    this.image = ImageIO.read(new File(filePath));
 		    return true;
 		} catch (IOException e) { return false; }
 	}
