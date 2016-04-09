@@ -35,7 +35,7 @@ public class GameWindow extends JFrame {
 		this.setVisible(true); //Common Java, just make this the default.
 		this.add(new GamePanel());
 		this.setLocationRelativeTo(null);
-		this.pack();
+		//this.pack();
 	}
 
 }
