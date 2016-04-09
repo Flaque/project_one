@@ -1,70 +1,59 @@
 package ui;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.JPanel;
-
 import entity.Platform;
+import framework.GameCanvas;
 
-public class GamePanel extends JPanel {
+public class GamePanel extends GameCanvas {
+	
+	//Utility
+	private final long secInNanosecond = 1000000000L;
+	private final long milisecInNanosec = 1000000L;
+	
+	//Used for managing FPS
+	private final int GAME_FPS = 60;
+	private final long GAME_UPDATE_PERIOD = secInNanosecond/GAME_FPS;
+	
+	//Used to keep track of time
+	private long gameTime;
+	private long lastTime;
+	
+	//State
+	public static enum GameState{PLAYING, STARTING, GAME_OVER, MAIN_MENU}
+	public static GameState gameState = GameState.PLAYING;
 	
 	/**
 	 * The GamePanel exists inside of the GameWindow and is where
 	 * we draw everything. 
 	 */
 	GamePanel() {
-		setFocusable(true);
-		setBackground(Color.WHITE);
-		setDoubleBuffered(true);
-		setSize(GameWindow.WIDTH, GameWindow.HEIGHT);
-		addKeyListener();
+		super();
+		
+		gameTime = 0;
+		lastTime = System.nanoTime();
+		
+		/**
+		 * Starts the game in a new thread
+		 */
+		Thread gameThread = new Thread() {
+			@Override
+			public void run() {
+				loop();
+			}
+		};
+		
+		gameThread.start();
 	}
 	
-	
 	/**
-	 * I can't figure out how to make this it's own class
-	 * so addKeyListener just adds our specific key listener here.
-	 * This makes no sense.
+	 * Used to make sure 
+	 * @param g2d
 	 */
-	private void addKeyListener() {
-		this.addKeyListener(new KeyListener(){ 
-
-		    public void keyPressed(KeyEvent ke){ 
-		         if (ke.getKeyCode() == 32) { //Is SpaceBar
-		        	 System.out.println("space bar");
-		         }
-		    }
-
-			@Override
-			public void keyTyped(KeyEvent e) {} //Not used
-
-			@Override
-			public void keyReleased(KeyEvent e) {} //Not used
-		});
-	}
-	
-	
-	/**
-	 * paintComponent is called Swing. All you need to know
-	 * is this is where to put all things you want to draw. 
-	 */
-	@Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        
-        //Player player = new Player(new Point(1, 1));
-        
-        Graphics2D g2d = (Graphics2D) g;
-        testLevelDesign(g2d);
-      //  block.draw(g2d, this);
-        
-    }
-	
 	public void testLevelDesign(Graphics2D g2d)
 	{
 		for(int i=1; i<15; i++)
@@ -73,6 +62,59 @@ public class GamePanel extends JPanel {
 	        myPlatform.makeHole();
 	        myPlatform.drawAll(g2d, this);
 		}
+	}
+	
+	/**
+	 * MAIN GAME LOOP
+	 */
+	private void loop() {
+		
+		//Used for calculating wait time during the FPS
+		long beginTime, timeTaken, timeLeft;
+		
+		while(true) {
+			beginTime = System.nanoTime();
+			
+			//Changes state
+			switch(gameState)  {
+				case STARTING: 
+					// Do something in the start?
+				case PLAYING: 
+					//Update stuff
+					gameTime += System.nanoTime() - lastTime;
+			}
+				
+			//Render
+			repaint();
+			
+			
+			// Here we calculate the time that defines for how long we should put threat to sleep to meet the GAME_FPS.
+            timeTaken = System.nanoTime() - beginTime;
+            timeLeft = (GAME_UPDATE_PERIOD - timeTaken) / milisecInNanosec; // In milliseconds
+            // If the time is less than 10 milliseconds, then we will put thread to sleep for 10 millisecond so that some other thread can do some work.
+            if (timeLeft < 10) 
+                timeLeft = 10; //set a minimum
+            try {
+                 //Provides the necessary delay and also yields control so that other thread can do work.
+                 Thread.sleep(timeLeft);
+            } catch (InterruptedException ex) { }
+		}
+	}
+
+
+	@Override
+	public void canvasDraw(Graphics2D g2d) {
+		// TODO Auto-generated method stub
+		
+		System.out.println("Drawn");
+		testLevelDesign(g2d);
+	}
+
+
+	@Override
+	public void keyReleasedFramework(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
