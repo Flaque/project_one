@@ -8,6 +8,8 @@ import java.awt.Point;
 import javax.swing.JPanel;
 
 import entity.Player;
+import entity.Block;
+import entity.Platform;
 
 public class GamePanel extends JPanel {
 	
@@ -30,11 +32,13 @@ public class GamePanel extends JPanel {
 	@Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
-        Player player = new Player(new Point(60, 100));
         
+        //Player player = new Player(new Point(1, 1));
+       // Block block=new Block(new Point(100, 100));
+        Platform myPlatform= new Platform(new Point(100,100), 10);
         Graphics2D g2d = (Graphics2D) g;
-        player.draw(g2d, this);
+      //  block.draw(g2d, this);
+        myPlatform.drawAll(g2d, this);
     }
 
 }
