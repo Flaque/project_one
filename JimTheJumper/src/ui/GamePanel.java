@@ -22,6 +22,7 @@ public class GamePanel extends JPanel {
 		setFocusable(true);
 		setBackground(Color.WHITE);
 		setDoubleBuffered(true);
+		setSize(GameWindow.WIDTH, GameWindow.HEIGHT);
 	}
 	
 	
