@@ -32,12 +32,29 @@ public class Platform {
 	blockList.remove(i);
 	}
 	
-	public void drawAll(Graphics2D myGraphics, JPanel myPanel)
+	public void drawBlocks(Graphics2D myGraphics, JPanel myPanel)
 	{
 		for(Block i : blockList)
 		{
 			i.draw(myGraphics, myPanel);
 		}
 	}
+	
+	public void applyUpwardForce(int force)
+	{
+		for(Block i : blockList)
+		{
+			i.applyForce(0,force);
+		}
+	}
+	
+	public void move()
+	{
+		for(Block i : blockList)
+		{
+			i.move();
+		}
+	}
+
 
 }

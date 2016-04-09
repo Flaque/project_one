@@ -1,15 +1,15 @@
 package ui;
 
-import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
-import entity.Platform;
+import entity.Level;
 import framework.GameCanvas;
 
 public class GamePanel extends GameCanvas {
+
+	//To Be Removed
+	Level myLevel;
 	
 	//Utility
 	private final long secInNanosecond = 1000000000L;
@@ -33,7 +33,7 @@ public class GamePanel extends GameCanvas {
 	 */
 	GamePanel() {
 		super();
-		
+		myLevel= new Level(10);
 		gameTime = 0;
 		lastTime = System.nanoTime();
 		
@@ -50,19 +50,6 @@ public class GamePanel extends GameCanvas {
 		gameThread.start();
 	}
 	
-	/**
-	 * Used to make sure 
-	 * @param g2d
-	 */
-	public void testLevelDesign(Graphics2D g2d)
-	{
-		for(int i=1; i<15; i++)
-		{
-			Platform myPlatform= new Platform(new Point(0,i*100), 20);
-	        myPlatform.makeHole();
-	        myPlatform.drawAll(g2d, this);
-		}
-	}
 	
 	/**
 	 * MAIN GAME LOOP
@@ -105,7 +92,7 @@ public class GamePanel extends GameCanvas {
 	@Override
 	public void canvasDraw(Graphics2D g2d) {
 		// TODO Auto-generated method stub
-		testLevelDesign(g2d);
+        myLevel.drawLevel(g2d, this);
 	}
 
 
