@@ -6,7 +6,7 @@ import java.awt.Point;
 
 public class Block extends Sprite {
 	
-	private static final int SIZE = 16;
+	private static final int SIZE = 30;
 
 	/**
 	 * A Block is what the map is made of. 
@@ -14,8 +14,13 @@ public class Block extends Sprite {
 	 * @param location
 	 * @param image
 	 */
-	Block(Point location) {
+	public Block(Point location) {
 		super(location, new Dimension(Block.SIZE, Block.SIZE), null);
-		this.setImage("res/p1_jump.png");
+		this.setImage("res/houseDark.png");
+	}
+	
+	public int getSize()
+	{
+		return SIZE;
 	}
 }
