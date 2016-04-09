@@ -18,12 +18,21 @@ public abstract class Entity {
 		this.box = new Rectangle(location.x, location.y, size.width, size.height);
 	}
 	
+	/**
+	 * Gets X
+	 * @return
+	 */
 	public int getX() {
 		return box.x;
 	}
 	
+	/**
+	 * Gets Y
+	 * @return
+	 */
 	public int getY() {
 		return box.y;
 	}
+	
 }
 

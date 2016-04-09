@@ -34,8 +34,8 @@ public class GameWindow extends JFrame {
 		this.setSize(GameWindow.WIDTH, GameWindow.HEIGHT);
 		this.setVisible(true); //Common Java, just make this the default.
 		this.add(new GamePanel());
+		this.setLocationRelativeTo(null);
+		this.pack();
 	}
-	
-	
 
 }

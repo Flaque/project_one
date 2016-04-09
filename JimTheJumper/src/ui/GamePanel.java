@@ -1,5 +1,6 @@
 package ui;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -10,17 +11,15 @@ import entity.Player;
 
 public class GamePanel extends JPanel {
 	
-	public static void main (String[] args) {
-		GamePanel panel = new GamePanel();
-	}
-	
-	
 	/**
 	 * The GamePanel exists inside of the GameWindow and is where
 	 * we draw everything. 
 	 */
 	GamePanel() {
-		
+		System.out.println("Added stuff");
+		setFocusable(true);
+		setBackground(Color.WHITE);
+		setDoubleBuffered(true);
 	}
 	
 	
@@ -31,8 +30,8 @@ public class GamePanel extends JPanel {
 	@Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        
-        Player player = new Player(new Point(1, 1));
+
+        Player player = new Player(new Point(60, 100));
         
         Graphics2D g2d = (Graphics2D) g;
         player.draw(g2d, this);

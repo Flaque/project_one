@@ -14,7 +14,7 @@ public abstract class Sprite extends Entity{
 	
 	// TODO: Cry over concurrency problems with Sprites and images.
 	
-	Image image;
+	public Image image;
 	
 	
 	/**
