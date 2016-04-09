@@ -14,7 +14,8 @@ public class Block extends Sprite {
 	 * @param location
 	 * @param image
 	 */
-	Block(Point location, Image image) {
-		super(location, new Dimension(Block.SIZE, Block.SIZE), image);
+	Block(Point location) {
+		super(location, new Dimension(Block.SIZE, Block.SIZE), null);
+		this.setImage("res/p1_jump.png");
 	}
 }
