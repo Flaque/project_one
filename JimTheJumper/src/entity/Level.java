@@ -32,5 +32,22 @@ public class Level {
 			i.drawBlocks(g2d, myPanel);
 		}
 	}
+	
+	public void applyUpwardForce(int force)
+	{
+		for(Platform i : platformList)
+		{
+			i.applyUpwardForce(force);
+		}
+	}
+	
+	public void move()
+	{
+			for(Platform i : platformList)
+			{
+				i.move();
+			}
+
+	}
 
 }
