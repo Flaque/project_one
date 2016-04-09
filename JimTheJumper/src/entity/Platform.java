@@ -26,7 +26,8 @@ public class Platform {
 	public void makeHole()
 	{
 	Random Rand= new Random();
-	int i=Rand.nextInt(blockList.size()-1);
+	int i=Rand.nextInt(blockList.size()-2);
+	blockList.remove(i+2);
 	blockList.remove(i+1);
 	blockList.remove(i);
 	}

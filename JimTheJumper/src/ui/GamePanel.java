@@ -45,7 +45,7 @@ public class GamePanel extends JPanel {
 	{
 		for(int i=1; i<15; i++)
 		{
-			Platform myPlatform= new Platform(new Point(0,i*100), 10);
+			Platform myPlatform= new Platform(new Point(0,i*100), 20);
 	        myPlatform.makeHole();
 	        myPlatform.drawAll(g2d, this);
 		}
