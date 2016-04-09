@@ -56,19 +56,6 @@ public class GamePanel extends GameCanvas {
 		gameThread.start();
 	}
 	
-	/**
-	 * Used to make sure 
-	 * @param g2d
-	 */
-	@Override
-    public void paintComponent(Graphics g) {
-        
-        /**
-        Platform myPlatform= new Platform(new Point(0,100),20);
-        myPlatform.drawBlocks(g2d, this);
-        */
-        
-    }
 	
 	/**
 	 * MAIN GAME LOOP
@@ -112,7 +99,6 @@ public class GamePanel extends GameCanvas {
 	public void canvasDraw(Graphics2D g2d) {
 		// TODO Auto-generated method stub
         myLevel.drawLevel(g2d, this);
-		System.out.println("Drawn");
 	}
 
 
