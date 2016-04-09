@@ -22,27 +22,29 @@ public class GamePanel extends JPanel {
 		setBackground(Color.WHITE);
 		setDoubleBuffered(true);
 		setSize(GameWindow.WIDTH, GameWindow.HEIGHT);
-		
+		addKeyListener();
+	}
+	
+	
+	/**
+	 * I can't figure out how to make this it's own class
+	 * so addKeyListener just adds our specific key listener here.
+	 * This makes no sense.
+	 */
+	private void addKeyListener() {
 		this.addKeyListener(new KeyListener(){ 
 
 		    public void keyPressed(KeyEvent ke){ 
-
-		         if (ke.getKeyCode() == 32) {
+		         if (ke.getKeyCode() == 32) { //Is SpaceBar
 		        	 System.out.println("space bar");
 		         }
 		    }
 
 			@Override
-			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void keyTyped(KeyEvent e) {} //Not used
 
 			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void keyReleased(KeyEvent e) {} //Not used
 		});
 	}
 	

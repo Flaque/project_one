@@ -19,5 +19,4 @@ public class Player extends Sprite {
 		super(location, new Dimension(Player.WIDTH, Player.HEIGHT), null);
 		this.setImage("res/p1_jump.png");
 	}
-
 }
