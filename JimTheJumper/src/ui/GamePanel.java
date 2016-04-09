@@ -1,15 +1,9 @@
 package ui;
 
-import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
-import javax.swing.JPanel;
 
 import entity.Level;
-import entity.Platform;
 import framework.GameCanvas;
 
 public class GamePanel extends GameCanvas {
