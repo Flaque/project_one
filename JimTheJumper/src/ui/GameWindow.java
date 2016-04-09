@@ -2,6 +2,8 @@
 
 package ui;
 
+import java.awt.Point;
+
 import javax.swing.JFrame;
 
 public class GameWindow extends JFrame {

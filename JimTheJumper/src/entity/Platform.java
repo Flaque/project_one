@@ -32,7 +32,7 @@ public class Platform {
 	blockList.remove(i);
 	}
 	
-	public void drawAll(Graphics2D myGraphics, JPanel myPanel)
+	public void drawBlocks(Graphics2D myGraphics, JPanel myPanel)
 	{
 		for(Block i : blockList)
 		{

@@ -9,6 +9,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
+import entity.Level;
 import entity.Platform;
 
 public class GamePanel extends JPanel {
@@ -56,23 +57,14 @@ public class GamePanel extends JPanel {
 	@Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        
-        //Player player = new Player(new Point(1, 1));
-        
         Graphics2D g2d = (Graphics2D) g;
-        testLevelDesign(g2d);
-      //  block.draw(g2d, this);
+        Level myLevel= new Level(10);
+        myLevel.drawLevel(g2d, this);
+        /**
+        Platform myPlatform= new Platform(new Point(0,100),20);
+        myPlatform.drawBlocks(g2d, this);
+        */
         
     }
-	
-	public void testLevelDesign(Graphics2D g2d)
-	{
-		for(int i=1; i<15; i++)
-		{
-			Platform myPlatform= new Platform(new Point(0,i*100), 20);
-	        myPlatform.makeHole();
-	        myPlatform.drawAll(g2d, this);
-		}
-	}
 
 }

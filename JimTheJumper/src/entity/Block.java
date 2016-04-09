@@ -16,7 +16,7 @@ public class Block extends Sprite {
 	 */
 	public Block(Point location) {
 		super(location, new Dimension(Block.SIZE, Block.SIZE), null);
-		this.setImage("res/houseDark.png");
+		this.setImage("res/jimPlatform.jpg");
 	}
 	
 	public int getSize()
