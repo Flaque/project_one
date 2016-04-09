@@ -105,8 +105,6 @@ public class GamePanel extends GameCanvas {
 	@Override
 	public void canvasDraw(Graphics2D g2d) {
 		// TODO Auto-generated method stub
-		
-		System.out.println("Drawn");
 		testLevelDesign(g2d);
 	}
 
