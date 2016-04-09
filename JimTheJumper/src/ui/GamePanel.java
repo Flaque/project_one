@@ -4,11 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
-import entity.Player;
-import entity.Block;
 import entity.Platform;
 
 public class GamePanel extends JPanel {
@@ -23,6 +23,28 @@ public class GamePanel extends JPanel {
 		setBackground(Color.WHITE);
 		setDoubleBuffered(true);
 		setSize(GameWindow.WIDTH, GameWindow.HEIGHT);
+		
+		this.addKeyListener(new KeyListener(){ 
+
+		    public void keyPressed(KeyEvent ke){ 
+
+		         if (ke.getKeyCode() == 32) {
+		        	 System.out.println("space bar");
+		         }
+		    }
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
 	
 	
