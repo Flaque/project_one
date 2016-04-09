@@ -39,7 +39,7 @@ public class GamePanel extends GameCanvas {
 	 */
 	GamePanel() {
 		super();
-		myLevel= new Level(10);
+		myLevel= new Level(50);
 		gameTime = 0;
 		lastTime = System.nanoTime();
 		
@@ -98,14 +98,16 @@ public class GamePanel extends GameCanvas {
 	@Override
 	public void canvasDraw(Graphics2D g2d) {
 		// TODO Auto-generated method stub
+		myLevel.move();
         myLevel.drawLevel(g2d, this);
 	}
+	
 
 
 	@Override
 	public void keyReleasedFramework(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+		myLevel.jump();
 	}
 
 }

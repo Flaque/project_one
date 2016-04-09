@@ -18,7 +18,7 @@ public class Level {
 		levelLength=size;
 		for(int i=0; i<levelLength; i++)
 		{
-			Platform myPlatform= new Platform(new Point(0,i*100), 20);
+			Platform myPlatform= new Platform(new Point(0,500-(i*100)), 20);
 	        myPlatform.makeHole();
 	        platformList.add(myPlatform);
 		}
@@ -41,6 +41,7 @@ public class Level {
 		}
 	}
 	
+	
 	public void move()
 	{
 			for(Platform i : platformList)
@@ -48,6 +49,13 @@ public class Level {
 				i.move();
 			}
 
+	}
+	
+	public void jump()
+	{
+		this.applyUpwardForce(1);
+		platformList.remove(0);
+		System.out.println("ping");
 	}
 
 }

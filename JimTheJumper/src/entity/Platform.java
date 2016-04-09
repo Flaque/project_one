@@ -55,6 +55,12 @@ public class Platform {
 			i.move();
 		}
 	}
+	
+	public int getHeight()
+	{
+		int i= blockList.get(0).dy;
+		return i;
+	}
 
 
 }
