@@ -6,7 +6,7 @@ import java.awt.Point;
 
 public class Block extends Sprite {
 	
-	private static final int SIZE = 30;
+	private static final int SIZE = 40;
 
 	/**
 	 * A Block is what the map is made of. 
@@ -23,4 +23,6 @@ public class Block extends Sprite {
 	{
 		return SIZE;
 	}
+	
+	
 }

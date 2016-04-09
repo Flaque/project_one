@@ -23,6 +23,14 @@ public class Platform {
 		}
 	}
 	
+	public void makeHole()
+	{
+	Random Rand= new Random();
+	int i=Rand.nextInt(blockList.size()-1);
+	blockList.remove(i+1);
+	blockList.remove(i);
+	}
+	
 	public void drawAll(Graphics2D myGraphics, JPanel myPanel)
 	{
 		for(Block i : blockList)

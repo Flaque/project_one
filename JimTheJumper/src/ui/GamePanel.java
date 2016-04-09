@@ -18,7 +18,6 @@ public class GamePanel extends JPanel {
 	 * we draw everything. 
 	 */
 	GamePanel() {
-		System.out.println("Added stuff");
 		setFocusable(true);
 		setBackground(Color.WHITE);
 		setDoubleBuffered(true);
@@ -34,11 +33,21 @@ public class GamePanel extends JPanel {
         super.paintComponent(g);
         
         //Player player = new Player(new Point(1, 1));
-       // Block block=new Block(new Point(100, 100));
-        Platform myPlatform= new Platform(new Point(100,100), 10);
+        
         Graphics2D g2d = (Graphics2D) g;
+        testLevelDesign(g2d);
       //  block.draw(g2d, this);
-        myPlatform.drawAll(g2d, this);
+        
     }
+	
+	public void testLevelDesign(Graphics2D g2d)
+	{
+		for(int i=1; i<15; i++)
+		{
+			Platform myPlatform= new Platform(new Point(0,i*100), 10);
+	        myPlatform.makeHole();
+	        myPlatform.drawAll(g2d, this);
+		}
+	}
 
 }
