@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
 import entity.Level;
+import framework.Controller;
 import framework.GameCanvas;
 
 public class GamePanel extends GameCanvas {
@@ -27,13 +28,18 @@ public class GamePanel extends GameCanvas {
 	public static enum GameState{PLAYING, STARTING, GAME_OVER, MAIN_MENU}
 	public static GameState gameState = GameState.PLAYING;
 	
+	//Controller
+	Controller controller = new Controller();
+	
 	/**
 	 * The GamePanel exists inside of the GameWindow and is where
 	 * we draw everything. 
 	 */
 	GamePanel() {
 		super();
-		myLevel= new Level(50);
+		
+		controller.newGame();
+		
 		gameTime = 0;
 		lastTime = System.nanoTime();
 		
@@ -68,6 +74,7 @@ public class GamePanel extends GameCanvas {
 					// Do something in the start?
 				case PLAYING: 
 					//Update stuff
+					controller.update(gameTime);
 					gameTime += System.nanoTime() - lastTime;
 			}
 				
@@ -91,17 +98,14 @@ public class GamePanel extends GameCanvas {
 
 	@Override
 	public void canvasDraw(Graphics2D g2d) {
-		// TODO Auto-generated method stub
-		myLevel.move();
-        myLevel.drawLevel(g2d, this);
+		controller.draw(g2d, this);
 	}
 	
 
 
 	@Override
 	public void keyReleasedFramework(KeyEvent e) {
-		// TODO Auto-generated method stub
-		myLevel.jump();
+		controller.onKey(e);
 	}
 
 }
