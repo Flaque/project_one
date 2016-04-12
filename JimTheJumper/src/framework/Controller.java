@@ -20,7 +20,7 @@ public class Controller {
 	
 	public void newGame() {
 		myLevel = new Level(50);
-		myPlayer= new Player(new Point(0,500));
+		myPlayer= new Player(new Point(0,540));
 	}
 
 	public void update(long gameTime) {

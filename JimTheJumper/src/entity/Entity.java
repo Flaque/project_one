@@ -47,6 +47,12 @@ public abstract class Entity {
 		this.box.y = y;
 	}
 	
+	public void stop()
+	{
+		dx=0;
+		dy=0;
+	}
+	
 	/**
 	 * Utility function for appling gravity to an object.
 	 * @param dy
@@ -75,6 +81,11 @@ public abstract class Entity {
 	public int getdy()
 	{
 		return dy;
+	}
+	
+	public int getdx()
+	{
+		return dx;
 	}
 
 }
