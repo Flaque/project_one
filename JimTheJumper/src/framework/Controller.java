@@ -50,7 +50,11 @@ public class Controller {
 			paused = !paused;
 		}
 		
+<<<<<<< HEAD
 		if(e.getKeyCode()==65)	//'a' called
+=======
+		if(e.getKeyCode()==65)
+>>>>>>> c4c274dfa25dcb67b0a96f32fbaf02922494830c
 		{
 			myPlayer.moveLeft();
 		}
@@ -63,9 +67,5 @@ public class Controller {
 		{
 			myPlayer.stop();
 		}
-		
-		
-		
-		//System.out.println(e);
 	}
 }
