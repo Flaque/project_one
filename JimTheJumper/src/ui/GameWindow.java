@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 public class GameWindow extends JFrame {
 	
 	public static final int WIDTH  = 400;
-	public static final int HEIGHT = 640;
+	public static final int HEIGHT = 680;
 	
 	/**
 	 * Before we do JUnit Tests, throw your tests in a main

@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 public class Platform {
 	ArrayList<Block> blockList= new ArrayList();
 	int midHoleIndex;
+	int height;
+	int blockSize;
 	
 	public Platform(Point location, int width)
 	{
@@ -21,6 +23,8 @@ public class Platform {
 			Block block= new Block(location);
 			location.x+=block.getSize();
 			blockList.add(block);
+			height=location.y;
+			blockSize=block.getSize();
 		}
 	}
 	
@@ -72,6 +76,13 @@ public class Platform {
 	public int getVelocity()
 	{
 		return blockList.get(0).getVelocity();
+	}
+	
+	public void fillHole()
+	{
+		blockList.add(new Block(new Point((midHoleIndex-1)*blockSize,600)));
+		blockList.add(new Block(new Point((midHoleIndex)*blockSize,600)));
+		blockList.add(new Block(new Point((midHoleIndex+1)*blockSize,600)));
 	}
 
 
