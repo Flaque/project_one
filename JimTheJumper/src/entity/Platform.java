@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 public class Platform {
 	ArrayList<Block> blockList= new ArrayList();
 	int midHoleIndex;
+	int midHoleLocation;
 	int height;
 	int blockSize;
 	
@@ -30,17 +31,23 @@ public class Platform {
 	
 	public void makeHole()
 	{
-	Random Rand= new Random();
-	int i=Rand.nextInt(blockList.size()-2);
-	blockList.remove(i+2);
-	blockList.remove(i+1);
-	blockList.remove(i);
-	midHoleIndex=i+1;
+		Random Rand= new Random();
+		int i=Rand.nextInt(blockList.size()-2);
+		midHoleLocation=(i+1)*blockSize;
+		blockList.remove(i+2);
+		blockList.remove(i+1);
+		blockList.remove(i);
+		midHoleIndex=i+1;
 	}
 	
 	public int getHoleIndex()
 	{
 		return midHoleIndex;
+	}
+	
+	public int getHoleLocation()
+	{
+		return midHoleLocation;
 	}
 	
 	public void drawBlocks(Graphics2D myGraphics, JPanel myPanel)

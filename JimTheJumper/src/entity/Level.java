@@ -15,12 +15,14 @@ public class Level {
 	int height=600;
 	int jumpProgress=0;
 	int dy=0;
-	int currentPlatform=0;
+	int currentPlatform=1;
 	Platform mostRecent;
 	
 	public Level(int size)
 	{
 		levelLength=size;
+		Platform startPlatform= new Platform(new Point(0,height), 20);
+		platformList.add(startPlatform);
 		for(int i=0; i<levelLength; i++)
 		{
 			height-=100;
@@ -66,13 +68,13 @@ public class Level {
 				jumpProgress=0;
 				//System.out.println("Player:"+ myPlayer.getX());
 				//System.out.println("Hole:"+ (platformList.get(currentPlatform).getHoleIndex()));
-				if(myPlayer.getX()<(platformList.get(currentPlatform).getHoleIndex())*20)
+				if(myPlayer.getX()<(platformList.get(currentPlatform).getHoleLocation()))
 				{
 					//System.out.println("right");
 					myPlayer.moveRight();
 				}
 				
-				if(myPlayer.getX()>(platformList.get(currentPlatform).getHoleIndex())*20)
+				if(myPlayer.getX()>(platformList.get(currentPlatform).getHoleLocation()))
 				{
 					//System.out.println("left");
 					myPlayer.moveLeft();
@@ -97,14 +99,15 @@ public class Level {
 				progress=0;
 				for(int i=0; i<10;i++)
 				{
-			
 					platformList.remove(0);
 					Platform myPlatform= new Platform(new Point(0,mostRecent.getHeight()-100),20);
 					myPlatform.makeHole();
 					platformList.add(myPlatform);
 					mostRecent=myPlatform;
 					System.out.println(platformList.indexOf(myPlatform));
+					
 				}
+				
 			}
 		}
 		
