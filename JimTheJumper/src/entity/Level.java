@@ -11,6 +11,7 @@ import entity.Platform;
 public class Level {
 	int levelLength;
 	ArrayList<Platform> platformList= new ArrayList();
+	int progress;
 	
 	
 	public Level(int size)
@@ -54,8 +55,9 @@ public class Level {
 	public void jump()
 	{
 		this.applyUpwardForce(1);
-		platformList.remove(0);
-		System.out.println("ping");
+		progress++;
+		
+		
 	}
 
 }
