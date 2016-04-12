@@ -97,10 +97,11 @@ public class Level {
 			{
 				System.out.println("Ping");
 				progress=0;
+				currentPlatform-=10;
 				for(int i=0; i<10;i++)
 				{
 					platformList.remove(0);
-					Platform myPlatform= new Platform(new Point(0,mostRecent.getHeight()-100),20);
+					Platform myPlatform= new Platform(new Point(0,platformList.get(23).getHeight()-100),20);
 					myPlatform.makeHole();
 					platformList.add(myPlatform);
 					mostRecent=myPlatform;
