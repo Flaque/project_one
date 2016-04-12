@@ -4,14 +4,12 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
 import entity.Level;
+import entity.Player;
 import framework.Controller;
 import framework.GameCanvas;
 
 public class GamePanel extends GameCanvas {
 
-	//To Be Removed
-	Level myLevel;
-	
 	//Utility
 	private final long secInNanosecond = 1000000000L;
 	private final long milisecInNanosec = 1000000L;

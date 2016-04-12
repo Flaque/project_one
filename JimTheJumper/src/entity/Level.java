@@ -11,15 +11,18 @@ import entity.Platform;
 public class Level {
 	int levelLength;
 	ArrayList<Platform> platformList= new ArrayList();
-	int progress;
-	
+	int progress=-5;
+	int height=600;
+	int jumpProgress=0;
+	int dy=0;
 	
 	public Level(int size)
 	{
 		levelLength=size;
 		for(int i=0; i<levelLength; i++)
 		{
-			Platform myPlatform= new Platform(new Point(0,500-(i*100)), 20);
+			height-=100;
+			Platform myPlatform= new Platform(new Point(0,height), 20);
 	        myPlatform.makeHole();
 	        platformList.add(myPlatform);
 		}
@@ -48,15 +51,40 @@ public class Level {
 			for(Platform i : platformList)
 			{
 				i.move();
+				
+			}
+			jumpProgress+=dy;
+			if(jumpProgress>=100)
+			{
+				dy=0;
+				this.applyUpwardForce(-1);
+				jumpProgress=0;
 			}
 
 	}
 	
 	public void jump()
 	{
-		this.applyUpwardForce(1);
-		progress++;
 		
+		if(jumpProgress==0)
+		{
+			System.out.println("ping");
+			dy=1;
+			this.applyUpwardForce(1);
+			progress++;
+			if(progress==10)
+			{
+				progress=0;
+				for(int i=0; i<10;i++)
+				{
+					platformList.remove(0);
+					height-=100;
+					Platform myPlatform=new Platform(new Point(0,height), 20);
+					myPlatform.makeHole();
+					platformList.add(myPlatform);
+				}
+			}
+		}
 		
 	}
 

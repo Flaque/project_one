@@ -71,6 +71,11 @@ public abstract class Entity {
 	public void move() {
 		this.setXY(box.x + dx, box.y + dy);
 	}
+	
+	public int getdy()
+	{
+		return dy;
+	}
 
 }
 
