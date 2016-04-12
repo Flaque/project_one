@@ -16,6 +16,7 @@ public class Level {
 	int jumpProgress=0;
 	int dy=0;
 	int currentPlatform=0;
+	Platform mostRecent;
 	
 	public Level(int size)
 	{
@@ -26,6 +27,7 @@ public class Level {
 			Platform myPlatform= new Platform(new Point(0,height), 20);
 	        myPlatform.makeHole();
 	        platformList.add(myPlatform);
+	        mostRecent=myPlatform;
 		}
 		
 	}
@@ -91,17 +93,18 @@ public class Level {
 			progress++;
 			if(progress==10)
 			{
+				System.out.println("Ping");
 				progress=0;
-				/**
 				for(int i=0; i<10;i++)
 				{
+			
 					platformList.remove(0);
-					height-=100;
-					Platform myPlatform=new Platform(new Point(0,height), 20);
+					Platform myPlatform= new Platform(new Point(0,mostRecent.getHeight()-100),20);
 					myPlatform.makeHole();
 					platformList.add(myPlatform);
+					mostRecent=myPlatform;
+					System.out.println(platformList.indexOf(myPlatform));
 				}
-				*/
 			}
 		}
 		
