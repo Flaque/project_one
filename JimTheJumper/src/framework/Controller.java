@@ -25,6 +25,7 @@ public class Controller {
 
 	public void update(long gameTime) {
 		myLevel.move();
+		myPlayer.move();
 	}
 	
 	public void draw(Graphics2D g2d, JPanel panel) {
@@ -32,7 +33,23 @@ public class Controller {
 		myPlayer.draw(g2d, panel);
 	}
 	
-	public void onKey(KeyEvent e) {
-		myLevel.jump();
+	public void onKey(KeyEvent e) 
+	{
+		if(e.getKeyCode()==32)
+		{
+			myLevel.jump();
+		}
+		
+		if(e.getKeyCode()==68)
+		{
+			myPlayer.applyForce(2, 0);
+		}
+		
+		if(e.getKeyCode()==65)
+		{
+			myPlayer.applyForce(-2, 0);
+		}
+		
+		//System.out.println(e);
 	}
 }
