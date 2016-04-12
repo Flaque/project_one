@@ -53,40 +53,37 @@ public class Level {
 	
 	public void move(Player myPlayer)
 	{
-			for(Platform i : platformList)
+		for(Platform i : platformList)
+		{
+			i.move();
+			
+		}
+		jumpProgress+=dy;
+		if(jumpProgress>=100)
+		{
+			System.out.println(currentPlatform);
+			this.applyUpwardForce(-1*dy);
+			dy=0;
+			platformList.get(currentPlatform-1).fillHole();
+			jumpProgress=0;
+			//System.out.println("Player:"+ myPlayer.getX());
+			//System.out.println("Hole:"+ (platformList.get(currentPlatform).getHoleIndex()));
+			if(myPlayer.getX()<(platformList.get(currentPlatform).getHoleLocation()))
 			{
-				i.move();
-				
+				//System.out.println("right");
+				myPlayer.moveRight();
 			}
-			jumpProgress+=dy;
-			if(jumpProgress>=100)
+			
+			if(myPlayer.getX()>(platformList.get(currentPlatform).getHoleLocation()))
 			{
-				System.out.println(currentPlatform);
-				this.applyUpwardForce(-1*dy);
-				dy=0;
-				platformList.get(currentPlatform-1).fillHole();
-				jumpProgress=0;
-				//System.out.println("Player:"+ myPlayer.getX());
-				//System.out.println("Hole:"+ (platformList.get(currentPlatform).getHoleIndex()));
-				if(myPlayer.getX()<(platformList.get(currentPlatform).getHoleLocation()))
-				{
-					//System.out.println("right");
-					myPlayer.moveRight();
-				}
-				
-				if(myPlayer.getX()>(platformList.get(currentPlatform).getHoleLocation()))
-				{
-					//System.out.println("left");
-					myPlayer.moveLeft();
-				}
-				
+				//System.out.println("left");
+				myPlayer.moveLeft();
 			}
-
+			
+		}
 	}
-	
 	public void jump()
-	{
-		           
+	{         
 		if(jumpProgress==0)
 		{
 			currentPlatform++;
@@ -110,7 +107,6 @@ public class Level {
 				
 			}
 		}
-		
 	}
 
 }
