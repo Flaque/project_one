@@ -15,6 +15,7 @@ public class Level {
 	int height=600;
 	int jumpProgress=0;
 	int dy=0;
+	int currentPlatform=0;
 	
 	public Level(int size)
 	{
@@ -68,6 +69,8 @@ public class Level {
 		
 		if(jumpProgress==0)
 		{
+			currentPlatform++;
+			System.out.println(currentPlatform);
 			this.applyUpwardForce(5);
 			dy= platformList.get(0).getVelocity();
 			progress++;

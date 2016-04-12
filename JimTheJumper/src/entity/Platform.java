@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 public class Platform {
 	ArrayList<Block> blockList= new ArrayList();
+	int midHoleIndex;
 	
 	public Platform(Point location, int width)
 	{
@@ -30,6 +31,12 @@ public class Platform {
 	blockList.remove(i+2);
 	blockList.remove(i+1);
 	blockList.remove(i);
+	midHoleIndex=i+1;
+	}
+	
+	public int getHoleIndex()
+	{
+		return midHoleIndex;
 	}
 	
 	public void drawBlocks(Graphics2D myGraphics, JPanel myPanel)
