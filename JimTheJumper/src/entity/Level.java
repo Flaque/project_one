@@ -57,21 +57,22 @@ public class Level {
 			jumpProgress+=dy;
 			if(jumpProgress>=100)
 			{
+				System.out.println(currentPlatform);
 				this.applyUpwardForce(-1*dy);
 				dy=0;
 				platformList.get(currentPlatform-1).fillHole();
 				jumpProgress=0;
-				System.out.println("Player:"+ myPlayer.getX());
-				System.out.println("Hole:"+ (platformList.get(currentPlatform).getHoleIndex()));
+				//System.out.println("Player:"+ myPlayer.getX());
+				//System.out.println("Hole:"+ (platformList.get(currentPlatform).getHoleIndex()));
 				if(myPlayer.getX()<(platformList.get(currentPlatform).getHoleIndex())*20)
 				{
-					System.out.println("right");
+					//System.out.println("right");
 					myPlayer.moveRight();
 				}
 				
 				if(myPlayer.getX()>(platformList.get(currentPlatform).getHoleIndex())*20)
 				{
-					System.out.println("left");
+					//System.out.println("left");
 					myPlayer.moveLeft();
 				}
 				
@@ -81,7 +82,7 @@ public class Level {
 	
 	public void jump()
 	{
-		
+		           
 		if(jumpProgress==0)
 		{
 			currentPlatform++;
@@ -91,6 +92,7 @@ public class Level {
 			if(progress==10)
 			{
 				progress=0;
+				/**
 				for(int i=0; i<10;i++)
 				{
 					platformList.remove(0);
@@ -99,6 +101,7 @@ public class Level {
 					myPlatform.makeHole();
 					platformList.add(myPlatform);
 				}
+				*/
 			}
 		}
 		
