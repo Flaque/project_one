@@ -41,7 +41,6 @@ public class Controller {
 			myLevel.jump();
 		}
 		
-		
 		if(e.getKeyCode()==65)
 		{
 			myPlayer.moveLeft();
@@ -55,9 +54,5 @@ public class Controller {
 		{
 			myPlayer.stop();
 		}
-		
-		
-		
-		//System.out.println(e);
 	}
 }
