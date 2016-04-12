@@ -56,7 +56,7 @@ public class Player extends Sprite {
 	public void moveLeft()
 	{
 		this.stop();
-		this.applyForce(1, 0);
+		this.applyForce(-1, 0);
 		
 	}
 	
@@ -64,6 +64,6 @@ public class Player extends Sprite {
 	public void moveRight()
 	{
 		this.stop();
-		this.applyForce(-1, 0);
+		this.applyForce(1, 0);
 	}
 }

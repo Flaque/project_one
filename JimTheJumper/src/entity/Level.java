@@ -62,11 +62,13 @@ public class Level {
 				jumpProgress=0;
 				if(myPlayer.getX()<(platformList.get(currentPlatform+1).getHoleIndex())*10)
 				{
+					System.out.println("right");
 					myPlayer.moveRight();
 				}
 				
 				if(myPlayer.getX()>(platformList.get(currentPlatform+1).getHoleIndex())*10)
 				{
+					System.out.println("left");
 					myPlayer.moveLeft();
 				}
 				
