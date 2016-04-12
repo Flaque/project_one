@@ -52,4 +52,18 @@ public class Player extends Sprite {
 		}
 	
 	}
+	
+	public void moveLeft()
+	{
+		this.stop();
+		this.applyForce(1, 0);
+		
+	}
+	
+	
+	public void moveRight()
+	{
+		this.stop();
+		this.applyForce(-1, 0);
+	}
 }

@@ -47,7 +47,7 @@ public class Level {
 	}
 	
 	
-	public void move()
+	public void move(Player myPlayer)
 	{
 			for(Platform i : platformList)
 			{
@@ -60,6 +60,16 @@ public class Level {
 				this.applyUpwardForce(-1*dy);
 				dy=0;
 				jumpProgress=0;
+				if(myPlayer.getX()<(platformList.get(currentPlatform+1).getHoleIndex())*10)
+				{
+					myPlayer.moveRight();
+				}
+				
+				if(myPlayer.getX()>(platformList.get(currentPlatform+1).getHoleIndex())*10)
+				{
+					myPlayer.moveLeft();
+				}
+				
 			}
 
 	}
@@ -70,13 +80,11 @@ public class Level {
 		if(jumpProgress==0)
 		{
 			currentPlatform++;
-			System.out.println(currentPlatform);
 			this.applyUpwardForce(5);
 			dy= platformList.get(0).getVelocity();
 			progress++;
 			if(progress==10)
 			{
-				System.out.println("ping");
 				progress=0;
 				for(int i=0; i<10;i++)
 				{

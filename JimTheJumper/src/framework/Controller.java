@@ -21,10 +21,11 @@ public class Controller {
 	public void newGame() {
 		myLevel = new Level(50);
 		myPlayer= new Player(new Point(0,540));
+		myPlayer.moveLeft();
 	}
 
 	public void update(long gameTime) {
-		myLevel.move();
+		myLevel.move(myPlayer);
 		myPlayer.move();
 	}
 	
@@ -40,15 +41,17 @@ public class Controller {
 			myLevel.jump();
 		}
 		
+		
 		if(e.getKeyCode()==68)
 		{
-			myPlayer.applyForce(2, 0);
+			myPlayer.moveLeft();
 		}
 		
 		if(e.getKeyCode()==65)
 		{
-			myPlayer.applyForce(-2, 0);
+			myPlayer.moveRight();
 		}
+		
 		
 		//System.out.println(e);
 	}
