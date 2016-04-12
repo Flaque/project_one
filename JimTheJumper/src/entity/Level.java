@@ -56,8 +56,8 @@ public class Level {
 			jumpProgress+=dy;
 			if(jumpProgress>=100)
 			{
+				this.applyUpwardForce(-1*dy);
 				dy=0;
-				this.applyUpwardForce(-1);
 				jumpProgress=0;
 			}
 
@@ -68,12 +68,12 @@ public class Level {
 		
 		if(jumpProgress==0)
 		{
-			System.out.println("ping");
-			dy=1;
-			this.applyUpwardForce(1);
+			this.applyUpwardForce(5);
+			dy= platformList.get(0).getVelocity();
 			progress++;
 			if(progress==10)
 			{
+				System.out.println("ping");
 				progress=0;
 				for(int i=0; i<10;i++)
 				{

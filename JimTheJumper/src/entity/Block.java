@@ -24,5 +24,10 @@ public class Block extends Sprite {
 		return SIZE;
 	}
 	
+	public int getVelocity()
+	{
+		return dy;
+	}
+	
 	
 }

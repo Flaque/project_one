@@ -61,6 +61,11 @@ public class Platform {
 		int i= blockList.get(0).dy;
 		return i;
 	}
+	
+	public int getVelocity()
+	{
+		return blockList.get(0).getVelocity();
+	}
 
 
 }
