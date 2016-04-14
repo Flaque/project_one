@@ -53,7 +53,7 @@ public class Player extends Sprite {
 	
 	}
 	
-	public void moveLeft()
+	public void moveLeft()	//sets the movement facing left
 	{
 		this.stop();
 		this.applyForce(-1, 0);
@@ -61,7 +61,7 @@ public class Player extends Sprite {
 	}
 	
 	
-	public void moveRight()
+	public void moveRight()	//sets the movement facing right
 	{
 		this.stop();
 		this.applyForce(1, 0);

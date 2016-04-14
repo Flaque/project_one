@@ -91,7 +91,7 @@ public class Level {
 				i.move();	
 			}
 			jumpProgress+=dy;
-			if(jumpProgress>=100)
+			if(jumpProgress==100)
 			{
 				this.jumpEnd(myPlayer);
 			}
@@ -121,7 +121,9 @@ public class Level {
 	 * Only runs if the player is not currently jumping.  Makes the level travel downward
 	 * every ten jumps, it adds more platforms to the top
 	 */
-	public void jump(){
+
+	public void jump()
+	{         
 		if(jumpProgress==0)
 		{
 			currentPlatform++;
