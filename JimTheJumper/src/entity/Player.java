@@ -66,4 +66,16 @@ public class Player extends Sprite {
 		this.stop();
 		this.applyForce(1, 0);
 	}
+	
+	public void pickDirection(int holeLocation){
+		if(this.getX()<holeLocation)
+		{
+			this.moveRight();
+		}
+		
+		if(this.getX()>holeLocation)
+		{
+			this.moveLeft();
+		}	
+	}
 }

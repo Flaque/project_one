@@ -91,6 +91,15 @@ public class Platform {
 		blockList.add(new Block(new Point((midHoleIndex)*blockSize,600)));
 		blockList.add(new Block(new Point((midHoleIndex+1)*blockSize,600)));
 	}
+	
+	public void stop(){
+		
+		for(Block i : blockList)
+		{
+			i.stop();
+		}
+		
+	}
 
 
 }
