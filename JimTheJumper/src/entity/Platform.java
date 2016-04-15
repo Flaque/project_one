@@ -105,5 +105,12 @@ public class Platform {
 		}
 		return false;
 	}
-
+	public void stop(){
+		
+		for(Block i : blockList)
+		{
+			i.stop();
+		}
+		
+	}
 }

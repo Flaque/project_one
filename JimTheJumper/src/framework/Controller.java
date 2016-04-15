@@ -20,7 +20,7 @@ public class Controller {
 	}
 	
 	public void newGame() {
-		myLevel = new Level(25);
+		myLevel = new Level(17);
 		myPlayer= new Player(new Point(0,540));
 		myPlayer.moveRight();
 	}

@@ -29,5 +29,10 @@ public class Block extends Sprite {
 		return dy;
 	}
 	
+	public void stop(){
+		dx=0;
+		dy=0;
+	}
+	
 	
 }
