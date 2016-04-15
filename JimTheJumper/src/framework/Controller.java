@@ -13,20 +13,23 @@ public class Controller {
 	
 	Level myLevel;
 	Player myPlayer;
+	boolean paused = false;
 	
 	public Controller() {
 		newGame();
 	}
 	
 	public void newGame() {
-		myLevel = new Level(25);
+		myLevel = new Level(17);
 		myPlayer= new Player(new Point(0,540));
 		myPlayer.moveRight();
 	}
 
 	public void update(long gameTime) {
-		myLevel.move(myPlayer);
-		myPlayer.move();
+		if (!paused){
+			myLevel.move(myPlayer);	//update platforms location
+			myPlayer.move();		//update player location
+		}
 	}
 	
 	public void draw(Graphics2D g2d, JPanel panel) {
@@ -36,21 +39,27 @@ public class Controller {
 	
 	public void onKey(KeyEvent e) 
 	{
-		if(e.getKeyCode()==32)
+		if(e.getKeyCode()==32)	//spacebar called
 		{
-			myLevel.jump();
+			if(!paused){
+				// create new platforms and delete old platforms
+				// also pauses the game if there is a collision
+				paused = myLevel.jump(myPlayer);
+			}
 		}
-		
-		if(e.getKeyCode()==65)
+		if(e.getKeyCode()==80){	//'p' called
+			paused = !paused;
+		}
+		if(e.getKeyCode()==65) 	//'a' called
 		{
 			myPlayer.moveLeft();
 		}
 		
-		if(e.getKeyCode()==68)
+		if(e.getKeyCode()==68)	//'d' called
 		{
 			myPlayer.moveRight();
 		}
-		if(e.getKeyCode()==83)
+		if(e.getKeyCode()==83)	//'s' called
 		{
 			myPlayer.stop();
 		}

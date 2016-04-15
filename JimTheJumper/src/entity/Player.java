@@ -26,14 +26,14 @@ public class Player extends Sprite {
 		if(this.getX()<=0)
 		{
 			this.setXY(0, this.getY());
-			this.stop();
+			this.moveRight();
 			
 		}
 		
 		if(this.getX()>= 360) //TODO factor in player width correctly
 		{
 			this.setXY(360, this.getY());
-			this.stop();
+			this.moveLeft();
 			
 		}
 	}
@@ -53,7 +53,7 @@ public class Player extends Sprite {
 	
 	}
 	
-	public void moveLeft()
+	public void moveLeft()	//sets the movement facing left
 	{
 		this.stop();
 		this.applyForce(-1, 0);
@@ -61,9 +61,21 @@ public class Player extends Sprite {
 	}
 	
 	
-	public void moveRight()
+	public void moveRight()	//sets the movement facing right
 	{
 		this.stop();
 		this.applyForce(1, 0);
+	}
+	
+	public void pickDirection(int holeLocation){
+		if(this.getX()<holeLocation)
+		{
+			this.moveRight();
+		}
+		
+		if(this.getX()>holeLocation)
+		{
+			this.moveLeft();
+		}	
 	}
 }
