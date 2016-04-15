@@ -43,18 +43,14 @@ public class Controller {
 		{
 			if(!paused){
 				// create new platforms and delete old platforms
-				myLevel.jump();
+				// also pauses the game if there is a collision
+				paused = myLevel.jump(myPlayer);
 			}
 		}
 		if(e.getKeyCode()==80){	//'p' called
 			paused = !paused;
 		}
-		
-<<<<<<< HEAD
-		if(e.getKeyCode()==65)	//'a' called
-=======
-		if(e.getKeyCode()==65)
->>>>>>> c4c274dfa25dcb67b0a96f32fbaf02922494830c
+		if(e.getKeyCode()==65) 	//'a' called
 		{
 			myPlayer.moveLeft();
 		}

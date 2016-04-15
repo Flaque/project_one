@@ -10,7 +10,7 @@ import entity.Platform;
 
 public class Level {
 	int levelLength;
-	ArrayList<Platform> platformList= new ArrayList();
+	ArrayList<Platform> platformList= new ArrayList<Platform>();
 	int progress=-5;
 	int height=600;
 	int jumpProgress=0;
@@ -79,16 +79,15 @@ public class Level {
 				//System.out.println("left");
 				myPlayer.moveLeft();
 			}
-			
 		}
 	}
-	public void jump()
-	{         
+	public boolean jump(Player myPlayer)
+	{   
 		if(jumpProgress==0)
 		{
 			currentPlatform++;
 			this.applyUpwardForce(5);
-			dy= platformList.get(0).getVelocity();
+			dy = platformList.get(0).getVelocity();
 			progress++;
 			if(progress==10)
 			{
@@ -103,11 +102,14 @@ public class Level {
 					platformList.add(myPlatform);
 					mostRecent=myPlatform;
 					System.out.println(platformList.indexOf(myPlatform));
-					
 				}
-				
 			}
+			//gets the platform over head
+			Platform p = platformList.get(currentPlatform-1);
+			//returns true if player has collided; false otherwise
+			return p.checkCollision(myPlayer);
 		}
+		return false;
 	}
 
 }

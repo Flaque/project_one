@@ -11,7 +11,7 @@ import java.util.*;
 import javax.swing.JPanel;
 
 public class Platform {
-	ArrayList<Block> blockList= new ArrayList();
+	ArrayList<Block> blockList= new ArrayList<Block>();
 	int midHoleIndex;
 	int midHoleLocation;
 	int height;
@@ -91,6 +91,19 @@ public class Platform {
 		blockList.add(new Block(new Point((midHoleIndex)*blockSize,600)));
 		blockList.add(new Block(new Point((midHoleIndex+1)*blockSize,600)));
 	}
-
+	//returns true is the player has collided with one of the blocks
+	public boolean checkCollision(Player p){
+		for(Block b : blockList)
+		{
+			//checks whether left side of player is within a block
+			boolean leftSide = b.getX() < p.getX() && b.getX()+b.getSize() >= p.getX();
+			//checks whether right side of player is within a block
+			boolean rightSide = b.getX()+b.getSize() > p.getX()+16 && b.getX() <= p.getX()+16;
+			if(leftSide || rightSide){
+				return true;
+			}
+		}
+		return false;
+	}
 
 }
