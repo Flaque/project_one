@@ -98,7 +98,7 @@ public class Platform {
 			//checks whether left side of player is within a block
 			boolean leftSide = b.getX() < p.getX() && b.getX()+b.getSize() >= p.getX();
 			//checks whether right side of player is within a block
-			boolean rightSide = b.getX()+b.getSize() > p.getX()+16 && b.getX() <= p.getX()+16;
+			boolean rightSide = b.getX()+b.getSize() > p.getX()+40 && b.getX() <= p.getX()+40;
 			if(leftSide || rightSide){
 				return true;
 			}

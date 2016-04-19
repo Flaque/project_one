@@ -22,7 +22,6 @@ public class Level {
 	int jumpProgress=0;
 	int dy=0;
 	int currentPlatform=1;
-	Platform mostRecent;
 	
 	/**
 	 * Add the start platform and adds platforms equal to the size
@@ -50,7 +49,6 @@ public class Level {
 			Platform myPlatform= new Platform(new Point(0,height), 20);
 	        myPlatform.makeHole();
 	        platformList.add(myPlatform);
-	        mostRecent=myPlatform;
 		}
 	}
 	
@@ -86,16 +84,19 @@ public class Level {
 	 * 
 	 * @param myPlayer: the player
 	 */
-	public void move(Player myPlayer){
+	public boolean move(Player myPlayer){
 		for(Platform i : platformList)
-		{
-			i.move();	
-		}
+			i.move();
 		jumpProgress+=dy;
-		if(jumpProgress==100)
-		{
-			this.jumpEnd(myPlayer);
+		if(jumpProgress==20){
+			//gets the platform over head
+			Platform p = platformList.get(currentPlatform-1);
+			//returns true if player has collided; false otherwise
+			return p.checkCollision(myPlayer);
 		}
+		if(jumpProgress==100)
+			this.jumpEnd(myPlayer);
+		return false;
 	}
 	//public boolean jump(Player myPlayer)
 	//{   
@@ -125,8 +126,7 @@ public class Level {
 	 * Only runs if the player is not currently jumping.  Makes the level travel downward
 	 * every ten jumps, it adds more platforms to the top
 	 */
-
-	public boolean jump(Player myPlayer)
+	public void jump(Player myPlayer)
 	{         
 		if(jumpProgress==0)
 		{
@@ -136,7 +136,8 @@ public class Level {
 			progress++;
 			if(progress==10)
 			{
-				System.out.println("Ping");
+				platformRefresh();
+				/*System.out.println("Ping");
 				progress=0;
 				currentPlatform-=10;
 				for(int i=0; i<10;i++)
@@ -145,35 +146,28 @@ public class Level {
 					Platform myPlatform= new Platform(new Point(0,platformList.get(23).getHeight()-100),20);
 					myPlatform.makeHole();
 					platformList.add(myPlatform);
-					mostRecent=myPlatform;
 					System.out.println(platformList.indexOf(myPlatform));
-				}
+				}*/
 			}
-			//gets the platform over head
-			Platform p = platformList.get(currentPlatform-1);
-			//returns true if player has collided; false otherwise
-			return p.checkCollision(myPlayer);
 		}
-		return false;
 	}
 	
 	/**
 	 * Currently doesn't work, should add more platforms to the top and removes them from the bottom.
 	 */
 	public void platformRefresh(){
+		//System.out.println("Ping");
 		progress=0;
 		currentPlatform-=10;
 		for(int i=0; i<11;i++)
 		{
 			platformList.remove(0);
-			Platform myPlatform= new Platform(new Point(0,height),20);
 			height-=100;
+			Platform myPlatform= new Platform(new Point(0,height),20);
 			myPlatform.makeHole();
-			myPlatform.stop();
+			//myPlatform.stop();
 			platformList.add(myPlatform);
-			mostRecent=myPlatform;
 			System.out.println(platformList.indexOf(myPlatform));
 		}
 	}
-
 }

@@ -27,7 +27,7 @@ public class Controller {
 
 	public void update(long gameTime) {
 		if (!paused){
-			myLevel.move(myPlayer);	//update platforms location
+			paused = myLevel.move(myPlayer);	//update platforms location
 			myPlayer.move();		//update player location
 		}
 	}
@@ -44,7 +44,7 @@ public class Controller {
 			if(!paused){
 				// create new platforms and delete old platforms
 				// also pauses the game if there is a collision
-				paused = myLevel.jump(myPlayer);
+				myLevel.jump(myPlayer);
 			}
 		}
 		if(e.getKeyCode()==80){	//'p' called

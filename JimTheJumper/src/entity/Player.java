@@ -56,7 +56,7 @@ public class Player extends Sprite {
 	public void moveLeft()	//sets the movement facing left
 	{
 		this.stop();
-		this.applyForce(-1, 0);
+		this.applyForce(-2, 0);
 		
 	}
 	
@@ -64,7 +64,7 @@ public class Player extends Sprite {
 	public void moveRight()	//sets the movement facing right
 	{
 		this.stop();
-		this.applyForce(1, 0);
+		this.applyForce(2, 0);
 	}
 	
 	public void pickDirection(int holeLocation){
