@@ -6,12 +6,15 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JPanel;
 
+import entity.Background;
+import entity.Block;
 import entity.Level;
 import entity.Player;
 
 public class Controller {
 	
 	Level myLevel;
+	Background myBackground;
 	Player myPlayer;
 	boolean paused = false;
 	
@@ -20,9 +23,11 @@ public class Controller {
 	}
 	
 	public void newGame() {
+		
 		myLevel = new Level(17);
 		myPlayer= new Player(new Point(0,540));
 		myPlayer.moveRight();
+		myBackground= new Background(new Point(0,0));
 	}
 
 	public void update(long gameTime) {
@@ -33,6 +38,7 @@ public class Controller {
 	}
 	
 	public void draw(Graphics2D g2d, JPanel panel) {
+		myBackground.draw(g2d, panel);
 		myLevel.drawLevel(g2d, panel);
 		myPlayer.draw(g2d, panel);
 	}
