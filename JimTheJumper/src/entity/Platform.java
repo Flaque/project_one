@@ -19,7 +19,7 @@ public class Platform {
 	
 	public Platform(Point location, int width)
 	{
-		for( int i=width; i>0; i--)
+		for(int i=width; i>0; i--)
 		{
 			Block block= new Block(location);
 			location.x+=block.getSize();

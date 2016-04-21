@@ -17,7 +17,7 @@ import entity.Platform;
 public class Level {
 	int levelLength;
 	ArrayList<Platform> platformList= new ArrayList<Platform>();
-	int progress=-5;
+	int progress=-2;
 	int height=600;
 	int jumpProgress=0;
 	int dy=0;
@@ -147,5 +147,7 @@ public class Level {
 		myPlatform.makeHole();
 		myPlatform.stop();
 		platformList.add(myPlatform);
+		currentPlatform--;
+		platformList.remove(0);
 	}
 }
