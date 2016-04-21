@@ -88,7 +88,7 @@ public class Level {
 		for(Platform i : platformList)
 			i.move();
 		jumpProgress+=dy;
-		if(jumpProgress==20){
+		if(jumpProgress==40){
 			//gets the platform over head
 			Platform p = platformList.get(currentPlatform-1);
 			//returns true if player has collided; false otherwise
@@ -116,7 +116,7 @@ public class Level {
 		jumpProgress=0;
 		int holeLocation=(platformList.get(currentPlatform).getHoleLocation());
 		myPlayer.pickDirection(holeLocation);
-		if(progress==10)
+		if(progress==1)
 		{
 			this.platformRefresh();	
 		}
@@ -134,21 +134,6 @@ public class Level {
 			this.applyUpwardForce(5);
 			dy = platformList.get(0).getVelocity();
 			progress++;
-			if(progress==10)
-			{
-				platformRefresh();
-				/*System.out.println("Ping");
-				progress=0;
-				currentPlatform-=10;
-				for(int i=0; i<10;i++)
-				{
-					platformList.remove(0);
-					Platform myPlatform= new Platform(new Point(0,platformList.get(23).getHeight()-100),20);
-					myPlatform.makeHole();
-					platformList.add(myPlatform);
-					System.out.println(platformList.indexOf(myPlatform));
-				}*/
-			}
 		}
 	}
 	
@@ -156,18 +141,11 @@ public class Level {
 	 * Currently doesn't work, should add more platforms to the top and removes them from the bottom.
 	 */
 	public void platformRefresh(){
-		//System.out.println("Ping");
 		progress=0;
-		currentPlatform-=10;
-		for(int i=0; i<11;i++)
-		{
-			platformList.remove(0);
-			height-=100;
-			Platform myPlatform= new Platform(new Point(0,height),20);
-			myPlatform.makeHole();
-			//myPlatform.stop();
-			platformList.add(myPlatform);
-			System.out.println(platformList.indexOf(myPlatform));
-		}
+		height-=100;
+		Platform myPlatform= new Platform(new Point(0,height),20);
+		myPlatform.makeHole();
+		myPlatform.stop();
+		platformList.add(myPlatform);
 	}
 }
