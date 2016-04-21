@@ -17,7 +17,7 @@ public class Player extends Sprite {
 	 */
 	public Player(Point location) {
 		super(location, new Dimension(Player.WIDTH, Player.HEIGHT), null);
-		this.setImage("res/p2_jump_right.png"); //TODO add transparency, make 40x60
+		this.setImage("res/p1_jump_right.png"); //TODO add transparency, make 40x60
 	}
 	
 	public void move()
@@ -43,12 +43,12 @@ public class Player extends Sprite {
 		super.applyForce(dx, dy);
 		if(this.getdx()>0)
 		{
-			this.setImage("res/p2_jump_right.png");
+			this.setImage("res/p1_jump_right.png");
 		}
 		
 		if(this.getdx()<0)
 		{
-			this.setImage("res/p2_jump_left.png");
+			this.setImage("res/p1_jump_left.png");
 		}
 	
 	}
