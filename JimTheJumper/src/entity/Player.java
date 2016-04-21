@@ -5,8 +5,8 @@ import java.awt.Point;
 
 public class Player extends Sprite {
 	
-	private static final int WIDTH  = 16;
-	private static final int HEIGHT = 16;
+	private static final int WIDTH  = 40;
+	private static final int HEIGHT = 56;
 
 	/**
 	 * Player is the main Player. (Duh)

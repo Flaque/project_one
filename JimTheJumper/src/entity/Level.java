@@ -88,7 +88,7 @@ public class Level {
 		for(Platform i : platformList)
 			i.move();
 		jumpProgress+=dy;
-		if(jumpProgress==40){
+		if(jumpProgress==30){
 			//gets the platform over head
 			Platform p = platformList.get(currentPlatform-1);
 			//returns true if player has collided; false otherwise
@@ -98,9 +98,6 @@ public class Level {
 			this.jumpEnd(myPlayer);
 		return false;
 	}
-	//public boolean jump(Player myPlayer)
-	//{   
-	//}
 	
 	/**
 	 * Stops the upward velocity of the player. Fills in the platform that was jumped over
@@ -138,7 +135,7 @@ public class Level {
 	}
 	
 	/**
-	 * Currently doesn't work, should add more platforms to the top and removes them from the bottom.
+	 * adds one platform to the top and removes one platform from the bottom
 	 */
 	public void platformRefresh(){
 		progress=0;
