@@ -1,5 +1,7 @@
 package framework;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
@@ -12,10 +14,9 @@ import entity.Level;
 import entity.Player;
 
 public class Controller {
-	
 	Level myLevel;
-	Background myBackground;
 	Player myPlayer;
+	int score;
 	boolean paused = false;
 	
 	public Controller() {
@@ -23,14 +24,12 @@ public class Controller {
 	}
 	
 	public void newGame() {
-		
 		myLevel = new Level(17);
 		myPlayer= new Player(new Point(0,540));
 		myPlayer.moveRight();
-		myBackground= new Background(new Point(0,0));
 	}
 
-	public void update(long gameTime) {
+	public void update(long gameTime){
 		if (!paused){
 			paused = myLevel.move(myPlayer);	//update platforms location
 			myPlayer.move();		//update player location
@@ -38,11 +37,16 @@ public class Controller {
 	}
 	
 	public void draw(Graphics2D g2d, JPanel panel) {
-		myBackground.draw(g2d, panel);
 		myLevel.drawLevel(g2d, panel);
 		myPlayer.draw(g2d, panel);
+		showScore(g2d);
 	}
-	
+	public void showScore(Graphics2D g2d){
+		Font font = new Font("Copperplate Gothic Bold", Font.PLAIN, 26);
+		g2d.setColor(Color.YELLOW);
+		g2d.setFont(font);
+		g2d.drawString("Score: " + score, 10, 50);
+	}
 	public void onKey(KeyEvent e) 
 	{
 		if(e.getKeyCode()==32)	//spacebar called
@@ -50,7 +54,7 @@ public class Controller {
 			if(!paused){
 				// create new platforms and delete old platforms
 				// also pauses the game if there is a collision
-				myLevel.jump(myPlayer);
+				score += myLevel.jump(myPlayer);
 			}
 		}
 		if(e.getKeyCode()==80){	//'p' called

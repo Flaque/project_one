@@ -16,7 +16,6 @@ public abstract class Sprite extends Entity{
 	
 	public Image image;
 	
-	
 	/**
 	 * A Sprite is just an entity with an image.
 	 * We make this distinction so we can define

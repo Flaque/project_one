@@ -16,7 +16,7 @@ public class Background extends Sprite {
 	 */
 	public Background(Point location) {
 		super(location, new Dimension(Background.SIZE, Background.SIZE), null);
-		this.setImage("res/backroundBase.png");
+		this.setImage("res/startBackground.png");
 	}
 	
 	public int getSize()

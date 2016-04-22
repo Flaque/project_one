@@ -15,7 +15,7 @@ import java.awt.Graphics2D;
 import entity.Platform;
 
 public class Level {
-	int levelLength;
+	Background myBackground;
 	ArrayList<Platform> platformList= new ArrayList<Platform>();
 	int progress=-2;
 	int height=600;
@@ -31,6 +31,7 @@ public class Level {
 	 * not counting the start platform
 	 */
 	public Level(int size){
+		myBackground= new Background(new Point(0,-896));
 		Platform startPlatform= new Platform(new Point(0,height), 20);
 		platformList.add(startPlatform);
 		initializePlatformList(size);
@@ -59,6 +60,7 @@ public class Level {
 	 * @param myPanel: The game panel
 	 */
 	public void drawLevel(Graphics2D g2d, JPanel myPanel){
+		myBackground.draw(g2d, myPanel);
 		for(Platform i : platformList)
 		{
 			i.drawBlocks(g2d, myPanel);
@@ -114,16 +116,14 @@ public class Level {
 		int holeLocation=(platformList.get(currentPlatform).getHoleLocation());
 		myPlayer.pickDirection(holeLocation);
 		if(progress==1)
-		{
-			this.platformRefresh();	
-		}
+			this.platformRefresh();
 	}
 	
 	/**
 	 * Only runs if the player is not currently jumping.  Makes the level travel downward
 	 * every ten jumps, it adds more platforms to the top
 	 */
-	public void jump(Player myPlayer)
+	public int jump(Player myPlayer)
 	{         
 		if(jumpProgress==0)
 		{
@@ -131,7 +131,9 @@ public class Level {
 			this.applyUpwardForce(5);
 			dy = platformList.get(0).getVelocity();
 			progress++;
+			return 1;
 		}
+		return 0;
 	}
 	
 	/**

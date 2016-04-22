@@ -27,14 +27,12 @@ public class Player extends Sprite {
 		{
 			this.setXY(0, this.getY());
 			this.moveRight();
-			
 		}
 		
 		if(this.getX()>= 360) //TODO factor in player width correctly
 		{
 			this.setXY(360, this.getY());
 			this.moveLeft();
-			
 		}
 	}
 	
