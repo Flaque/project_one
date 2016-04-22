@@ -31,7 +31,7 @@ public class Level {
 	 * not counting the start platform
 	 */
 	public Level(int size){
-		Background startBackground = new Background(new Point(0,-896));
+		Background startBackground = new Background(new Point(0,-876));
 		startBackground.setImage("res/startBackground.png");
 		backgrounds.add(startBackground);
 		Platform startPlatform= new Platform(new Point(0,height), 20);
@@ -50,7 +50,8 @@ public class Level {
 		{
 			height-=100;
 			Platform myPlatform= new Platform(new Point(0,height), 20);
-	        myPlatform.makeHole();
+			Platform last= platformList.get(platformList.size()-1);
+	        myPlatform.makeHole(last.getHoleIndex());
 	        platformList.add(myPlatform);
 		}
 	}
@@ -82,12 +83,13 @@ public class Level {
 	}
 	
 	public void addBackground(int score){
-		if (score == 20 || score%30 == 0){
+		if (score == 20 || score%29 == 0){
 			Background last = backgrounds.get(backgrounds.size()-1);
 			Background goingBackground = new Background(new Point(0, last.getY()-1180));
 			backgrounds.add(goingBackground);
 			if(backgrounds.size() > 3)
 				backgrounds.remove(0);
+			System.out.println(backgrounds.size());
 		}
 	}
 	
@@ -158,7 +160,8 @@ public class Level {
 		progress=0;
 		height-=100;
 		Platform myPlatform= new Platform(new Point(0,height),20);
-		myPlatform.makeHole();
+		Platform last= platformList.get(platformList.size()-1);
+		myPlatform.makeHole(last.getHoleIndex());
 		myPlatform.stop();
 		platformList.add(myPlatform);
 		currentPlatform--;

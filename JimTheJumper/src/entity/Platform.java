@@ -29,10 +29,12 @@ public class Platform {
 		}
 	}
 	
-	public void makeHole()
+	public void makeHole(int avoid)
 	{
 		Random Rand= new Random();
 		int i=Rand.nextInt(blockList.size()-2);
+		while(!((i+1)-avoid < -2 || (i+1)-avoid > 2))
+			i=Rand.nextInt(blockList.size()-2);
 		midHoleLocation=(i+1)*blockSize;
 		blockList.remove(i+2);
 		blockList.remove(i+1);
