@@ -32,6 +32,7 @@ public class Level {
 	 */
 	public Level(int size){
 		Background startBackground = new Background(new Point(0,-896));
+		startBackground.setImage("res/startBackground.png");
 		backgrounds.add(startBackground);
 		Platform startPlatform= new Platform(new Point(0,height), 20);
 		platformList.add(startPlatform);
@@ -81,11 +82,12 @@ public class Level {
 	}
 	
 	public void addBackground(int score){
-		if (score == 20){
+		if (score == 20 || score%30 == 0){
 			Background last = backgrounds.get(backgrounds.size()-1);
-			Background goingBackground = new Background(new Point(0,last.getY()-1180));
-			goingBackground.setImage("res/goingBackground.png");
+			Background goingBackground = new Background(new Point(0, last.getY()-1180));
 			backgrounds.add(goingBackground);
+			if(backgrounds.size() > 3)
+				backgrounds.remove(0);
 		}
 	}
 	
