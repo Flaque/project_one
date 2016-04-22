@@ -31,7 +31,7 @@ public class Controller {
 
 	public void update(long gameTime){
 		if (!paused){
-			paused = myLevel.move(myPlayer);	//update platforms location
+			myLevel.move(myPlayer, score);	//update platforms location
 			myPlayer.move();		//update player location
 		}
 	}

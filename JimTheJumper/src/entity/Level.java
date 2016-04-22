@@ -15,7 +15,7 @@ import java.awt.Graphics2D;
 import entity.Platform;
 
 public class Level {
-	Background myBackground;
+	ArrayList<Background> backgrounds= new ArrayList<Background>();
 	ArrayList<Platform> platformList= new ArrayList<Platform>();
 	int progress=-2;
 	int height=600;
@@ -31,7 +31,8 @@ public class Level {
 	 * not counting the start platform
 	 */
 	public Level(int size){
-		myBackground= new Background(new Point(0,-896));
+		Background startBackground = new Background(new Point(0,-896));
+		backgrounds.add(startBackground);
 		Platform startPlatform= new Platform(new Point(0,height), 20);
 		platformList.add(startPlatform);
 		initializePlatformList(size);
@@ -60,11 +61,10 @@ public class Level {
 	 * @param myPanel: The game panel
 	 */
 	public void drawLevel(Graphics2D g2d, JPanel myPanel){
-		myBackground.draw(g2d, myPanel);
-		for(Platform i : platformList)
-		{
-			i.drawBlocks(g2d, myPanel);
-		}
+		for(Background b : backgrounds)
+			b.draw(g2d, myPanel);
+		for(Platform p : platformList)
+			p.drawBlocks(g2d, myPanel);
 	}
 	
 	/**
@@ -74,9 +74,18 @@ public class Level {
 	 * each block
 	 */
 	public void applyUpwardForce(int force){
-		for(Platform i : platformList)
-		{
-			i.applyUpwardForce(force);
+		for(Background b : backgrounds)
+			b.applyForce(0,force/2);
+		for(Platform p : platformList)
+			p.applyUpwardForce(force);
+	}
+	
+	public void addBackground(int score){
+		if (score == 20){
+			Background last = backgrounds.get(backgrounds.size()-1);
+			Background goingBackground = new Background(new Point(0,last.getY()-1180));
+			goingBackground.setImage("res/goingBackground.png");
+			backgrounds.add(goingBackground);
 		}
 	}
 	
@@ -86,7 +95,9 @@ public class Level {
 	 * 
 	 * @param myPlayer: the player
 	 */
-	public boolean move(Player myPlayer){
+	public boolean move(Player myPlayer, int score){
+		for(Background b : backgrounds)
+			b.move();
 		for(Platform i : platformList)
 			i.move();
 		jumpProgress+=dy;
@@ -96,8 +107,10 @@ public class Level {
 			//returns true if player has collided; false otherwise
 			return p.checkCollision(myPlayer);
 		}
-		if(jumpProgress==100)
+		if(jumpProgress==100){
 			this.jumpEnd(myPlayer);
+			this.addBackground(score);
+		}
 		return false;
 	}
 	
