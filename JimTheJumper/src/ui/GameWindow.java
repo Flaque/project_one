@@ -37,7 +37,7 @@ public class GameWindow extends JFrame {
 		this.setLocationRelativeTo(null);
 		this.setSize(GameWindow.WIDTH, GameWindow.HEIGHT);
 		this.setVisible(true); //Common Java, just make this the default.
-		
+		this.setResizable(false);
 	}
 
 }
