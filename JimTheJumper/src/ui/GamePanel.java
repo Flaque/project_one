@@ -3,11 +3,8 @@ package ui;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-import javax.swing.*;
-
 import entity.Glass;
-import framework.Controller;
-import framework.GameCanvas;
+import framework.*;
 
 public class GamePanel extends GameCanvas {
 	//Utility
@@ -29,9 +26,11 @@ public class GamePanel extends GameCanvas {
 	//Controller
 	Controller controller = new Controller();
 	
-	//over slide
+	//game over sliding
 	private int Ycor = -50;
 	private int Xcor = -300;
+	
+	//highscore track
 	private int score = 0;
 	
 	/**
@@ -40,7 +39,6 @@ public class GamePanel extends GameCanvas {
 	 */
 	GamePanel() {
 		super();
-		
 		gameState = GameState.MAIN_MENU;
 		
 		gameTime = 0;
@@ -88,7 +86,8 @@ public class GamePanel extends GameCanvas {
 					//Update stuff
 					if(controller.update(gameTime))
 						gameState = GameState.GAME_OVER;
-					score = controller.getScore();
+					if(score < controller.getScore())
+						score = controller.getScore();
 					gameTime += System.nanoTime() - lastTime;
 					break;
 				case GAME_OVER:
@@ -122,12 +121,14 @@ public class GamePanel extends GameCanvas {
 			this.overMenu(g2d);
 	}
 	private void mainMenu(Graphics2D g2d){
+		//displays title upon opening the program
 		Font font = new Font("Copperplate Gothic Bold", Font.ITALIC, 50);
 		g2d.setColor(Color.WHITE);
 		g2d.setFont(font);
 		g2d.drawString("Jim the", 40, 60);
 		g2d.drawString("Jumper", 140, 110);
 		
+		//informs the user how to begin the game
 		font = new Font("Copperplate Gothic Bold", Font.PLAIN, 22);
 		g2d.setColor(Color.YELLOW);
 		g2d.setFont(font);
@@ -135,27 +136,32 @@ public class GamePanel extends GameCanvas {
 		g2d.drawString("to begin.", 140, 290);
 	}
 	private void overMenu(Graphics2D g2d){
+		//overlays a transparent image to dim the background
 		Glass glass = new Glass(new Point(0,0));
 		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 0.5));
 		glass.draw(g2d,this);
 		
+		//then places a more visible image so that the words have more contrast
 		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 0.85));
 		Glass cover = new Glass(new Point(100,210));
 		cover.setImage("res/cover.png");
 		cover.draw(g2d,this);
 		
+		//title for the game over menu
 		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 1.0));
 		Font font = new Font("Copperplate Gothic Bold", Font.ITALIC, 32);
 		g2d.setColor(Color.RED);
 		g2d.setFont(font);
 		g2d.drawString("Game Over", 100, Ycor);
 		
+		//informs the user how to begin again
 		font = new Font("Copperplate Gothic Bold", Font.PLAIN, 22);
 		g2d.setColor(Color.BLUE);
 		g2d.setFont(font);
 		g2d.drawString("Press 's' to", Xcor, 300);
 		g2d.drawString("    start over.", Xcor, 330);
 		
+		//displays the high score for this session
 		g2d.setFont(font);
 		g2d.drawString("HighScore: " + score, Xcor-15, 385);
 	}
