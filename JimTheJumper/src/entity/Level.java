@@ -17,11 +17,12 @@ import entity.Platform;
 public class Level {
 	ArrayList<Background> backgrounds= new ArrayList<Background>();
 	ArrayList<Platform> platformList= new ArrayList<Platform>();
-	int progress=-2;
-	int height=600;
-	int jumpProgress=0;
-	int dy=0;
-	int currentPlatform=1;
+	private int progress=-2;
+	private int height=600;
+	private int jumpProgress=0;
+	private int dy=0;
+	private int currentPlatform=1;
+	private boolean inMenu;
 	
 	/**
 	 * Add the start platform and adds platforms equal to the size
@@ -31,12 +32,16 @@ public class Level {
 	 * not counting the start platform
 	 */
 	public Level(int size){
-		Background startBackground = new Background(new Point(0,-876));
+		inMenu = false;
+		Background startBackground = new Background(new Point(0,660-1496));
 		startBackground.setImage("res/startBackground.png");
 		backgrounds.add(startBackground);
 		Platform startPlatform= new Platform(new Point(0,height), 20);
 		platformList.add(startPlatform);
 		initializePlatformList(size);
+	}
+	public void setMenu(){
+		inMenu = true;
 	}
 	
 	/**
@@ -65,8 +70,9 @@ public class Level {
 	public void drawLevel(Graphics2D g2d, JPanel myPanel){
 		for(Background b : backgrounds)
 			b.draw(g2d, myPanel);
-		for(Platform p : platformList)
-			p.drawBlocks(g2d, myPanel);
+		if(!inMenu)
+			for(Platform p : platformList)
+				p.drawBlocks(g2d, myPanel);
 	}
 	
 	/**
@@ -82,14 +88,13 @@ public class Level {
 			p.applyUpwardForce(force);
 	}
 	
-	public void addBackground(int score){
-		if (score == 20 || score%29 == 0){
-			Background last = backgrounds.get(backgrounds.size()-1);
+	public void addBackground(){
+		Background last = backgrounds.get(backgrounds.size()-1);
+		if(last.getY()>-50){
 			Background goingBackground = new Background(new Point(0, last.getY()-1180));
 			backgrounds.add(goingBackground);
 			if(backgrounds.size() > 3)
 				backgrounds.remove(0);
-			System.out.println(backgrounds.size());
 		}
 	}
 	
@@ -99,7 +104,7 @@ public class Level {
 	 * 
 	 * @param myPlayer: the player
 	 */
-	public boolean move(Player myPlayer, int score){
+	public boolean move(Player myPlayer){
 		for(Background b : backgrounds)
 			b.move();
 		for(Platform i : platformList)
@@ -113,7 +118,7 @@ public class Level {
 		}
 		if(jumpProgress==100){
 			this.jumpEnd(myPlayer);
-			this.addBackground(score);
+			this.addBackground();
 		}
 		return false;
 	}

@@ -1,15 +1,15 @@
 package ui;
 
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
-import entity.Level;
-import entity.Player;
+import javax.swing.*;
+
+import entity.Glass;
 import framework.Controller;
 import framework.GameCanvas;
 
 public class GamePanel extends GameCanvas {
-
 	//Utility
 	private final long secInNanosecond = 1000000000L;
 	private final long milisecInNanosec = 1000000L;
@@ -24,10 +24,15 @@ public class GamePanel extends GameCanvas {
 	
 	//State
 	public static enum GameState{PLAYING, STARTING, GAME_OVER, MAIN_MENU}
-	public static GameState gameState = GameState.PLAYING;
+	public static GameState gameState;
 	
 	//Controller
 	Controller controller = new Controller();
+	
+	//over slide
+	private int Ycor = -50;
+	private int Xcor = -300;
+	private int score = 0;
 	
 	/**
 	 * The GamePanel exists inside of the GameWindow and is where
@@ -36,7 +41,7 @@ public class GamePanel extends GameCanvas {
 	GamePanel() {
 		super();
 		
-		controller.newGame();
+		gameState = GameState.MAIN_MENU;
 		
 		gameTime = 0;
 		lastTime = System.nanoTime();
@@ -66,19 +71,33 @@ public class GamePanel extends GameCanvas {
 		while(true) {
 			beginTime = System.nanoTime();
 			
-			//Changes state
-			switch(gameState)  {
-				case STARTING: 
-					// Do something in the start?
-				case PLAYING: 
-					//Update stuff
-					controller.update(gameTime);
-					gameTime += System.nanoTime() - lastTime;
-			}
-				
 			//Render
 			repaint();
 			
+			//Changes state
+			switch(gameState)  {
+				case MAIN_MENU:
+					controller.update(gameTime);
+					break;
+				case STARTING: 
+					//create a new game and begin
+					controller.newGame();
+					gameState = GameState.PLAYING;
+					break;
+				case PLAYING: 
+					//Update stuff
+					if(controller.update(gameTime))
+						gameState = GameState.GAME_OVER;
+					score = controller.getScore();
+					gameTime += System.nanoTime() - lastTime;
+					break;
+				case GAME_OVER:
+					if(Ycor <= 230)
+						Ycor+=10;
+					else if(Xcor <= 110)
+						Xcor+=10;
+					break;
+			}
 			
 			// Here we calculate the time that defines for how long we should put threat to sleep to meet the GAME_FPS.
             timeTaken = System.nanoTime() - beginTime;
@@ -97,13 +116,59 @@ public class GamePanel extends GameCanvas {
 	@Override
 	public void canvasDraw(Graphics2D g2d) {
 		controller.draw(g2d, this);
+		if(gameState == GameState.MAIN_MENU)
+			this.mainMenu(g2d);
+		if(gameState == GameState.GAME_OVER)
+			this.overMenu(g2d);
 	}
-	
-
-
+	private void mainMenu(Graphics2D g2d){
+		Font font = new Font("Copperplate Gothic Bold", Font.ITALIC, 50);
+		g2d.setColor(Color.WHITE);
+		g2d.setFont(font);
+		g2d.drawString("Jim the", 40, 60);
+		g2d.drawString("Jumper", 140, 110);
+		
+		font = new Font("Copperplate Gothic Bold", Font.PLAIN, 22);
+		g2d.setColor(Color.YELLOW);
+		g2d.setFont(font);
+		g2d.drawString("Press any key", 140, 260);
+		g2d.drawString("to begin.", 140, 290);
+	}
+	private void overMenu(Graphics2D g2d){
+		Glass glass = new Glass(new Point(0,0));
+		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 0.5));
+		glass.draw(g2d,this);
+		
+		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 0.85));
+		Glass cover = new Glass(new Point(100,210));
+		cover.setImage("res/cover.png");
+		cover.draw(g2d,this);
+		
+		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, (float) 1.0));
+		Font font = new Font("Copperplate Gothic Bold", Font.ITALIC, 32);
+		g2d.setColor(Color.RED);
+		g2d.setFont(font);
+		g2d.drawString("Game Over", 100, Ycor);
+		
+		font = new Font("Copperplate Gothic Bold", Font.PLAIN, 22);
+		g2d.setColor(Color.BLUE);
+		g2d.setFont(font);
+		g2d.drawString("Press 's' to", Xcor, 300);
+		g2d.drawString("    start over.", Xcor, 330);
+		
+		g2d.setFont(font);
+		g2d.drawString("HighScore: " + score, Xcor-15, 385);
+	}
 	@Override
 	public void keyReleasedFramework(KeyEvent e) {
-		controller.onKey(e);
+		//checks game is over and that space is released
+		if(gameState == GameState.GAME_OVER && e.getKeyCode()==83){
+			Ycor = -50; Xcor = -300;
+			gameState = GameState.STARTING;
+		}
+		if(gameState == GameState.MAIN_MENU)
+			gameState = GameState.STARTING;
+		if(gameState == GameState.PLAYING)
+			controller.onKey(e);
 	}
-
 }

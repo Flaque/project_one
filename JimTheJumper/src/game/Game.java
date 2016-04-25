@@ -8,5 +8,4 @@ public class Game {
 		//Note: For the moment, let's have Game be the main before we do MainMenu
 		GameWindow window = new GameWindow();
 	}
-
 }
